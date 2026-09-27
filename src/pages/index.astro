@@ -1,0 +1,9 @@
+---
+import { getEntry } from 'astro:content';
+import DoomedRaidersPage from '../components/DoomedRaidersPage.astro';
+
+const fr = await getEntry('site', 'fr');
+const links = await getEntry('links', 'main');
+if (!fr || !links) throw new Error('Missing content/site fr.yaml or links.yaml');
+---
+<DoomedRaidersPage t={fr.data} links={links.data} path="/" otherHref="/en/" />

@@ -1,0 +1,269 @@
+# Decap CMS config — a free, git-based admin panel, same one used on Anorak Studio's site.
+# It edits the YAML files in src/content/site/ directly, so the site and the CMS never fall
+# out of sync. Editing here and clicking "Publish" commits to GitHub; Cloudflare Pages then
+# rebuilds the site automatically.
+
+backend:
+  name: github
+  repo: anorak-studio/doomed-raiders-site
+  branch: main
+  # Ce site héberge lui-même son "fournisseur" d'authentification GitHub
+  # (voir functions/auth.js et functions/callback.js). Pas besoin de Netlify.
+  base_url: https://doomed-raiders-site.pages.dev
+
+media_folder: "public/assets"
+public_folder: "/assets"
+
+collections:
+  - name: "site"
+    label: "Contenu du site"
+    files:
+      - name: "fr"
+        label: "Français"
+        file: "src/content/site/fr.yaml"
+        fields: &site_fields
+          - { label: "Titre (onglet du navigateur)", name: "title", widget: "string" }
+          - { label: "Description (SEO)", name: "description", widget: "text" }
+          - { label: "Langue", name: "lang", widget: "hidden" }
+          - { label: "Langue HTML", name: "htmlLang", widget: "hidden" }
+          - { label: "Étiquette du sélecteur de langue", name: "switchLabel", widget: "string" }
+          - { label: "Titre du sélecteur de langue", name: "switchTitle", widget: "string" }
+          - label: "Menu"
+            name: "nav"
+            widget: "object"
+            fields:
+              - { label: "L'expédition", name: "expedition", widget: "string" }
+              - { label: "Le musée", name: "museum", widget: "string" }
+              - { label: "Les Raiders", name: "raiders", widget: "string" }
+              - { label: "Les biomes", name: "biomes", widget: "string" }
+              - { label: "Le studio", name: "studio", widget: "string" }
+              - { label: "Vidéos", name: "videos", widget: "string" }
+              - { label: "Fungus Forest", name: "fungus", widget: "string" }
+              - { label: "Liste de souhaits (bouton)", name: "wishlist", widget: "string" }
+              - { label: "Steam bientôt (bouton)", name: "steamSoon", widget: "string" }
+          - label: "Accueil (hero)"
+            name: "hero"
+            widget: "object"
+            fields:
+              - { label: "Amorce", name: "kicker", widget: "string" }
+              - { label: "Titre", name: "title", widget: "string" }
+              - { label: "Texte", name: "lede", widget: "text" }
+              - { label: "Bouton principal", name: "cta", widget: "string" }
+              - { label: "Bouton (Steam bientôt)", name: "steamSoon", widget: "string" }
+              - { label: "Bouton secondaire (Steam actif)", name: "follow", widget: "string" }
+              - { label: "Bouton secondaire (Steam bientôt)", name: "secondary", widget: "string" }
+              - { label: "Petite note", name: "soon", widget: "string" }
+              - { label: "Texte alternatif de l'image", name: "alt", widget: "text" }
+          - label: "L'expédition (section)"
+            name: "expedition"
+            widget: "object"
+            fields:
+              - { label: "Amorce", name: "eyebrow", widget: "string" }
+              - { label: "Titre", name: "title", widget: "string" }
+              - { label: "Intro", name: "intro", widget: "text" }
+              - label: "Étapes"
+                name: "steps"
+                widget: "list"
+                fields:
+                  - { label: "Numéro", name: "n", widget: "string" }
+                  - { label: "Titre", name: "title", widget: "string" }
+                  - { label: "Texte", name: "text", widget: "text" }
+                  - { label: "Image (nom de fichier dans public/assets)", name: "img", widget: "string" }
+                  - { label: "Texte alternatif", name: "alt", widget: "text" }
+          - label: "Le jeu"
+            name: "game"
+            widget: "object"
+            fields:
+              - { label: "Amorce", name: "eyebrow", widget: "string" }
+              - { label: "Titre", name: "title", widget: "string" }
+              - { label: "Paragraphes", name: "text", widget: "list", field: { label: "Paragraphe", name: "p", widget: "text" } }
+              - { label: "Citation", name: "quote", widget: "string" }
+              - { label: "Texte alternatif (image de fond)", name: "quoteAlt", widget: "text" }
+              - label: "Piliers"
+                name: "pillars"
+                widget: "list"
+                fields:
+                  - { label: "Titre", name: "k", widget: "string" }
+                  - { label: "Texte", name: "v", widget: "text" }
+          - label: "Le musée"
+            name: "museum"
+            widget: "object"
+            fields:
+              - { label: "Amorce", name: "eyebrow", widget: "string" }
+              - { label: "Titre", name: "title", widget: "string" }
+              - { label: "Intro", name: "intro", widget: "text" }
+              - { label: "Étiquette (« Pièce »)", name: "label", widget: "string" }
+              - label: "Spécimens"
+                name: "specimens"
+                widget: "list"
+                fields:
+                  - { label: "Numéro", name: "no", widget: "string" }
+                  - { label: "Nom", name: "name", widget: "string" }
+                  - { label: "Époque", name: "era", widget: "string" }
+                  - { label: "Note", name: "note", widget: "text" }
+                  - { label: "Image (nom de fichier dans public/assets)", name: "img", widget: "string" }
+                  - { label: "Texte alternatif", name: "alt", widget: "text" }
+          - label: "Les Raiders (section)"
+            name: "raiders"
+            widget: "object"
+            fields:
+              - { label: "Amorce", name: "eyebrow", widget: "string" }
+              - { label: "Titre", name: "title", widget: "string" }
+              - { label: "Intro", name: "intro", widget: "text" }
+              - { label: "« En jeu »", name: "inGame", widget: "string" }
+              - label: "Liste des Raiders"
+                name: "list"
+                widget: "list"
+                fields:
+                  - { label: "Identifiant (explorer / fast / strong)", name: "id", widget: "string", hint: "Doit correspondre aux noms de fichiers raider-<id>-big.png et raider-<id>-small.png" }
+                  - { label: "Nom", name: "name", widget: "string" }
+                  - { label: "Étiquette", name: "tag", widget: "string" }
+                  - { label: "Texte", name: "text", widget: "text" }
+                  - { label: "Texte alternatif", name: "alt", widget: "text" }
+          - label: "Les biomes"
+            name: "biomes"
+            widget: "object"
+            fields:
+              - { label: "Amorce", name: "eyebrow", widget: "string" }
+              - { label: "Titre", name: "title", widget: "string" }
+              - { label: "Intro", name: "intro", widget: "text" }
+              - { label: "Flèche précédente (accessibilité)", name: "prev", widget: "string" }
+              - { label: "Flèche suivante (accessibilité)", name: "next", widget: "string" }
+              - label: "Liste des biomes"
+                name: "list"
+                widget: "list"
+                fields:
+                  - { label: "Nom", name: "name", widget: "string" }
+                  - { label: "Texte", name: "text", widget: "text" }
+                  - { label: "Image (nom de fichier dans public/assets)", name: "img", widget: "string" }
+              - label: "Biome secret"
+                name: "more"
+                widget: "object"
+                fields:
+                  - { label: "Nom", name: "name", widget: "string" }
+                  - { label: "Texte", name: "text", widget: "text" }
+          - label: "Voyager"
+            name: "travel"
+            widget: "object"
+            fields:
+              - { label: "Amorce", name: "eyebrow", widget: "string" }
+              - { label: "Titre", name: "title", widget: "string" }
+              - { label: "Texte", name: "text", widget: "text" }
+              - { label: "Texte alternatif (montgolfière)", name: "balloonAlt", widget: "text" }
+              - { label: "Texte alternatif (carte)", name: "mapAlt", widget: "text" }
+          - label: "Liste de souhaits"
+            name: "wishlist"
+            widget: "object"
+            fields:
+              - { label: "Titre (Steam actif)", name: "title", widget: "string" }
+              - { label: "Titre (Steam bientôt)", name: "soonTitle", widget: "string" }
+              - { label: "Texte (Steam actif)", name: "text", widget: "text" }
+              - { label: "Texte (Steam bientôt)", name: "soonText", widget: "text" }
+              - { label: "Raisons", name: "reasons", widget: "list", field: { label: "Raison", name: "r", widget: "string" } }
+              - { label: "Bouton", name: "cta", widget: "string" }
+              - { label: "Bouton (Steam bientôt)", name: "steamSoon", widget: "string" }
+              - { label: "Bouton secondaire", name: "follow", widget: "string" }
+          - label: "Le studio"
+            name: "studio"
+            widget: "object"
+            fields:
+              - { label: "Amorce", name: "eyebrow", widget: "string" }
+              - { label: "Titre", name: "title", widget: "string" }
+              - { label: "Paragraphes", name: "text", widget: "list", field: { label: "Paragraphe", name: "p", widget: "text" } }
+              - { label: "Lien vers Fungus Forest", name: "from", widget: "string" }
+              - label: "Équipe"
+                name: "team"
+                widget: "list"
+                fields:
+                  - { label: "Nom", name: "name", widget: "string" }
+                  - { label: "Rôle", name: "role", widget: "string" }
+                  - { label: "Photo (nom de fichier dans public/assets)", name: "img", widget: "string" }
+                  - { label: "Texte alternatif", name: "alt", widget: "text" }
+              - { label: "Texte alternatif (logo ours)", name: "bearAlt", widget: "text" }
+          - label: "Fungus Forest"
+            name: "fungus"
+            widget: "object"
+            fields:
+              - { label: "Amorce", name: "eyebrow", widget: "string" }
+              - { label: "Titre", name: "title", widget: "string" }
+              - { label: "Paragraphes", name: "text", widget: "list", field: { label: "Paragraphe", name: "p", widget: "text" } }
+              - label: "Fiche technique"
+                name: "facts"
+                widget: "list"
+                fields:
+                  - { label: "Clé", name: "k", widget: "string" }
+                  - { label: "Valeur", name: "v", widget: "string" }
+              - { label: "Bouton principal", name: "cta", widget: "string" }
+              - { label: "Bouton démo", name: "demo", widget: "string" }
+              - { label: "Bouton vidéo", name: "video", widget: "string" }
+              - { label: "Texte alternatif vidéo", name: "videoAlt", widget: "text" }
+              - { label: "Texte alternatif console", name: "handheldAlt", widget: "text" }
+              - { label: "Texte alternatif bandeau", name: "bandAlt", widget: "text" }
+          - label: "Pied de page"
+            name: "footer"
+            widget: "object"
+            fields:
+              - { label: "Slogan", name: "tagline", widget: "string" }
+              - { label: "« Liens »", name: "links", widget: "string" }
+              - { label: "Droits réservés", name: "rights", widget: "string" }
+              - { label: "Doomed Raiders sur Steam", name: "steam", widget: "string" }
+              - { label: "Doomed Raiders sur Steam (bientôt)", name: "steamSoon", widget: "string" }
+              - { label: "Fungus Forest sur itch.io", name: "itch", widget: "string" }
+              - { label: "Anorak Studio", name: "anorak", widget: "string" }
+          - label: "Vidéos"
+            name: "videos"
+            widget: "object"
+            fields:
+              - { label: "Amorce", name: "eyebrow", widget: "string" }
+              - { label: "Titre", name: "title", widget: "string" }
+              - { label: "Texte", name: "text", widget: "text" }
+              - { label: "« Lire la vidéo »", name: "play", widget: "string" }
+              - { label: "Flèche précédente", name: "prev", widget: "string" }
+              - { label: "Flèche suivante", name: "next", widget: "string" }
+              - { label: "« Toutes nos vidéos »", name: "more", widget: "string" }
+              - { label: "Titre (abonnement)", name: "followTitle", widget: "string" }
+              - { label: "Texte (abonnement)", name: "followText", widget: "text" }
+              - { label: "« Tous nos réseaux »", name: "followAll", widget: "string" }
+          - label: "Réseaux sociaux (section)"
+            name: "social"
+            widget: "object"
+            fields:
+              - { label: "Titre", name: "title", widget: "string" }
+              - { label: "Texte", name: "text", widget: "text" }
+          - label: "Page 404"
+            name: "notFound"
+            widget: "object"
+            fields:
+              - { label: "Titre", name: "title", widget: "string" }
+              - { label: "Texte", name: "text", widget: "text" }
+              - { label: "Bouton retour", name: "back", widget: "string" }
+
+      - name: "en"
+        label: "English"
+        file: "src/content/site/en.yaml"
+        fields: *site_fields
+
+  - name: "links"
+    label: "Liens & réseaux (communs FR/EN)"
+    files:
+      - name: "main"
+        label: "Liens"
+        file: "src/content/site/links.yaml"
+        fields:
+          - { label: "Page Steam en ligne ?", name: "steamLive", widget: "boolean", default: false, hint: "Tant que c'est décoché, les boutons affichent « Steam : prochainement »." }
+          - { label: "Lien Steam", name: "steam", widget: "string" }
+          - { label: "Lien Fungus Forest (itch.io)", name: "fungusItch", widget: "string" }
+          - { label: "ID YouTube de la bande-annonce Fungus Forest", name: "fungusVideoId", widget: "string" }
+          - { label: "Lien Anorak Studio", name: "anorak", widget: "string" }
+          - label: "Vidéos courtes (section Vidéos)"
+            name: "shorts"
+            widget: "list"
+            field: { label: "ID YouTube", name: "id", widget: "string", hint: "La fin de l'adresse youtube.com/shorts/…" }
+          - label: "Réseaux sociaux"
+            name: "social"
+            widget: "list"
+            fields:
+              - { label: "Identifiant (facebook / instagram / tiktok / youtube / threads / x)", name: "id", widget: "string" }
+              - { label: "Nom", name: "name", widget: "string" }
+              - { label: "Identifiant affiché (@...)", name: "handle", widget: "string" }
+              - { label: "URL", name: "url", widget: "string" }

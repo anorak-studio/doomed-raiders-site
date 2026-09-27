@@ -1,0 +1,239 @@
+lang: en
+htmlLang: en
+title: Doomed Raiders — Paleontological Madness
+description: Save your museum from bankruptcy! Doomed Raiders is a unique blend of action platformer and delirious paleontology simulator, made in Québec. Coming soon to Steam.
+switchLabel: FR
+switchTitle: Version française
+nav:
+  expedition: The expedition
+  museum: The museum
+  raiders: The Raiders
+  biomes: Biomes
+  studio: Studio
+  videos: Videos
+  fungus: Fungus Forest
+  wishlist: Wishlist
+  steamSoon: Steam · soon
+hero:
+  kicker: Paleontological Madness
+  title: Save your museum from bankruptcy!
+  lede: Explore wild lands, uncover lost temples, dig for fossils and bring your discoveries back to your exhibitions to attract new visitors!
+  cta: Wishlist on Steam
+  steamSoon: Steam page coming soon
+  follow: Follow the expedition
+  secondary: See the expedition
+  soon: Coming soon to Steam · PC
+  alt: Three Raiders on a skull-covered cliff watch a giant sauropod in a misty jungle.
+expedition:
+  eyebrow: The loop
+  title: One expedition, four steps
+  intro: Every level is an expedition. Finding something precious is only half the job. Bringing it back is the other half.
+  steps:
+  - n: '1'
+    title: The museum is broke
+    text: The halls are empty, the creditors are waiting and the curator is counting on you.
+    img: museum-parasaurolophus.webp
+    alt: A Raider and the purple-haired curator stand before a parasaurolophus skeleton.
+  - n: '2'
+    title: Set sail
+    text: The houseboat and its one-eyed captain carry the crew to the next level.
+    img: boat-jungle.webp
+    alt: The houseboat, packed with Raiders, docks at the edge of a misty jungle.
+  - n: '3'
+    title: Dig and survive
+    text: Dig, climb, slash. Switch between the three Raiders. Die a little.
+    img: biome-dark-forest.webp
+    alt: A Raider leaps with a machete above red-eyed ghouls rising from the ground.
+  - n: '4'
+    title: Extract and exhibit
+    text: Get out alive with the loot. Every fossil you bring back fills a hall and draws new visitors.
+    img: museum-stegosaurus.webp
+    alt: Visitors admire a stegosaurus skeleton at the museum.
+game:
+  eyebrow: The game
+  title: Platforming, digging and very bad ideas
+  text:
+  - 'Doomed Raiders is a unique blend of action platformer and delirious paleontology simulator. Take control of Paleocorp and its natural history museum: solve puzzles, fight monsters and face a mysterious cult… all while saving the world from cosmic horrors.'
+  - 'The humor comes from the situations: a perfectly safe plan that fails immediately, a yeti at the end of a grappling hook, or a giant thing that is definitely not a whale.'
+  quote: This is NOT a whale!!!
+  quoteAlt: The crew on the boat's roof shouts “This is NOT a whale!!!” at a giant creature with huge teeth.
+  pillars:
+  - k: Genre mix
+    v: Action platforming, exploration, combat, optional management and wacky puzzles.
+  - k: Dark humor
+    v: Absurd deaths and dubious plans. Disaster is part of the charm.
+  - k: Exploration
+    v: Hidden paths, secret areas, relics and a world map to roam.
+museum:
+  eyebrow: Paleocorp · Natural history museum
+  title: The museum
+  intro: Every fossil you bring back fills a hall, draws new visitors and pays for the next expedition. Improve your exhibitions to save Paleocorp. In the field, you take the risks; at the museum, you see the results.
+  label: Exhibit
+  specimens:
+  - 'no': DR-001
+    name: Stegosaurus
+    era: Late Jurassic · about 150 million years ago
+    note: Rebuilt from 37 pieces. Two Raiders are still missing.
+    img: museum-stegosaurus.webp
+    alt: Stegosaurus skeleton on display beneath tall windows.
+  - 'no': DR-002
+    name: Spinosaurus
+    era: Late Cretaceous · about 95 million years ago
+    note: Original dorsal sail. The guide would rather not say how it was pulled out of the water.
+    img: museum-spinosaurus.webp
+    alt: Spinosaurus skeleton with its tall dorsal sail.
+  - 'no': DR-003
+    name: Parasaurolophus
+    era: Late Cretaceous · about 75 million years ago
+    note: Its crest was used to communicate. The curator swears she hears it at night.
+    img: museum-parasaurolophus.webp
+    alt: Parasaurolophus skeleton on a plinth beside an ivy-covered column.
+raiders:
+  eyebrow: Always stay in group
+  title: Three Raiders
+  intro: Each one has an ability that opens paths of their own. Switch between them to get past obstacles and keep the team alive.
+  inGame: In game
+  list:
+  - id: explorer
+    name: The Explorer
+    tag: Mobility · grappling hook
+    text: The grappling hook carries him across chasms to paths no one else can reach. Always ready to go a little too far.
+    alt: The Explorer, bearded and hatted, a shovel over his shoulder.
+  - id: fast
+    name: The Fast
+    tag: Speed · kick jump
+    text: The fastest and most agile of the trio. She jumps higher than anyone, and her kick jump sends her where precision beats power.
+    alt: The Fast, hair in a bun, machete in hand.
+  - id: strong
+    name: The Strong
+    tag: Strength · heavy objects
+    text: He pushes, breaks and lifts whatever is in the way, giant fossils included. When a puzzle resists, he is the least subtle solution.
+    alt: The Strong carries a huge rock with a fossil skull inside.
+biomes:
+  eyebrow: A doomed world
+  title: Biomes
+  intro: Every region has its own rules, creatures and creative ways to die. Pick a destination or let it roll.
+  prev: Previous biome
+  next: Next biome
+  list:
+  - name: Prehistoric jungle
+    text: Vines, mist and a temple carved like a dinosaur head.
+    img: biome-jungle.webp
+  - name: Swamps and rivers
+    text: Reeds, turquoise water and a diving suit for underwater digs.
+    img: boat-swamp.webp
+  - name: Open sea
+    text: Gorgeous sunsets. And something very large underneath.
+    img: biome-open-sea.webp
+  - name: Sunken ruins
+    text: Broken columns, giant lily pads and a sea serpent guarding it all.
+    img: biome-sunken-ruins.webp
+  - name: Desert canyon
+    text: Cliffs, ropes and crested lizards who dislike visitors.
+    img: biome-desert.webp
+  - name: Sky ruins
+    text: Turquoise pyramids, a horned monument and a small plane to fly home.
+    img: biome-sky-ruins.webp
+  - name: Dark forest
+    text: Red-eyed ghouls crawl out of the ground. Keep your machete close.
+    img: biome-dark-forest.webp
+  - name: Caves
+    text: Campfires, ladders, mushrooms and far too many bones.
+    img: biome-caves.webp
+  - name: Snowy peaks
+    text: Ice cliffs, crystals and falls that don't forgive.
+    img: biome-peaks.webp
+  - name: Boreal forest
+    text: Northern lights, a tree decorated with skulls and a snowball-throwing yeti.
+    img: biome-boreal.webp
+  more:
+    name: ???
+    text: Graveyards, haunted houses, ghost ships… Some expeditions are still secret.
+travel:
+  eyebrow: The world map
+  title: Getting there is half the adventure
+  text: Between expeditions, cross the world by houseboat, hot-air balloon, airship or small plane. And when an expedition goes wrong, you still have to pull off the extraction.
+  balloonAlt: The three Raiders in a hot-air balloon basket above the jungle.
+  mapAlt: 'World map: the hot-air balloon drifts over plains, forests and mountains, near the boat moored at the dock.'
+wishlist:
+  title: The museum is counting on you.
+  soonTitle: Coming soon to Steam.
+  text: Adding Doomed Raiders to your Steam wishlist is free and takes two seconds.
+  soonText: 'The Doomed Raiders Steam page is coming soon. As soon as it opens, add the game to your wishlist: it''s free and takes two seconds.'
+  reasons:
+  - Steam will let you know on launch day and whenever it goes on sale.
+  - Every wishlist will help Steam show the game to more players.
+  - For a studio of three friends, it's the best boost there is.
+  cta: Wishlist on Steam
+  steamSoon: Steam page coming soon
+  follow: Follow the expedition meanwhile
+studio:
+  eyebrow: Anorak Studio Games
+  title: Three friends, one bad idea at a time
+  text:
+  - We are three lifelong friends from Québec. Two of us have been coding forever, but never for a video game. The third draws pixels and can't stop.
+  - One day we decided to make the game we wanted to play. Three and a half years later we're still here, adding mechanics, laughing at our bugs and burying Raiders.
+  from: Mathieu, a.k.a. Wazak, also drew Fungus Forest
+  team:
+  - name: Mathieu Fortin
+    role: Pixel art (as Wazak), development and game design
+    img: team-mathieu.webp
+    alt: Portrait of Mathieu Fortin.
+  - name: François-Sébastien Lambert
+    role: Senior lead developer
+    img: team-frank.png
+    alt: Illustrated portrait of Frank, hat and beard.
+  - name: Patrick Pelletier
+    role: Senior lead developer
+    img: team-patrick.png
+    alt: Illustrated portrait of Patrick, bald with a red beard and a scar across his head.
+  bearAlt: 'Anorak Studio Games logo: an explorer facing a bear.'
+fungus:
+  eyebrow: An Anorak Studio Games × Mooonbit collaboration
+  title: Fungus Forest
+  text:
+  - 'A turn-based puzzle game for the Game Boy Advance, born from a collaboration between Anorak Studio Games and Mooonbit. You are a little mushroom trying to reach the raft. Every step counts: hungry slugs inch one tile closer each time you move.'
+  - Can you escape the forest before becoming the slugs' next snack?
+  facts:
+  - k: Genre
+    v: Turn-based puzzle
+  - k: Team
+    v: 'Anorak Studio Games (pixel art: Wazak) × Mooonbit'
+  - k: Platforms
+    v: Browser, .gba ROM, Windows
+  - k: Released
+    v: April 2025
+  - k: Price
+    v: US$2.99 or more · free demo
+  cta: Play Fungus Forest
+  demo: Try the free demo
+  video: Watch the trailer
+  videoAlt: The Fungus Forest mushroom flees a slug in a forest level.
+  handheldAlt: Fungus Forest on a handheld console, resting on forest moss.
+  bandAlt: 'Fungus Forest: a little mushroom runs from a giant slug in the forest.'
+footer:
+  tagline: Handmade in Québec.
+  links: Links
+  rights: Anorak Studio Games. All rights reserved.
+  steam: Doomed Raiders on Steam
+  steamSoon: Doomed Raiders on Steam · coming soon
+  itch: Fungus Forest on itch.io
+  anorak: Anorak Studio
+videos:
+  eyebrow: Live gameplay · dark humour
+  title: Videos
+  text: Live gameplay moments where the expedition goes wrong. Very wrong. Which is exactly why we love them.
+  play: Play video
+  prev: Previous videos
+  next: Next videos
+  more: All our videos on YouTube
+  followTitle: Jokes and game dev, every day
+  followText: Want daily jokes and game development in your feed? Follow us!
+  followAll: All our socials
+social:
+  title: Follow the expedition
+  text: Behind the scenes, pixel art and development news, wherever you hang out.
+notFound:
+  title: This expedition doesn't exist.
+  text: The page you're looking for can't be found. It may have been eaten.
+  back: Back to the museum

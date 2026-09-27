@@ -1,0 +1,38 @@
+steamLive: false
+steam: https://store.steampowered.com/search/?term=Doomed%20Raiders
+fungusItch: https://mooonbit.itch.io/fungus-forest
+fungusVideoId: rDnTc8gzyCA
+anorak: https://anorakstudio.ca
+shorts:
+- vE-tIhJjqfg
+- 4TmaXXlAyGM
+- lCLhahZo38g
+- mpqBcLO0HEM
+- nnvYn06pqTo
+- wtj_6cCgZkM
+- Jas44EyeR8I
+social:
+- id: facebook
+  name: Facebook
+  handle: wazak.illustration
+  url: https://www.facebook.com/wazak.illustration
+- id: instagram
+  name: Instagram
+  handle: '@wazak.art'
+  url: https://www.instagram.com/wazak.art/
+- id: tiktok
+  name: TikTok
+  handle: '@anorakstudio'
+  url: https://www.tiktok.com/@anorakstudio
+- id: youtube
+  name: YouTube
+  handle: '@TheAnorakStudio'
+  url: https://www.youtube.com/@TheAnorakStudio
+- id: threads
+  name: Threads
+  handle: '@wazak.art'
+  url: https://www.threads.com/@wazak.art
+- id: x
+  name: X
+  handle: '@_Wazak'
+  url: https://x.com/_Wazak

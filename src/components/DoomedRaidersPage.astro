@@ -1,0 +1,376 @@
+---
+// Ported 1:1 from the original site's src/template.mjs (page()) — same markup,
+// same classes, same styles.css / site.js. Content comes from the CMS-edited
+// YAML instead of content.mjs, and per-locale routing comes from Astro's file
+// structure ( / for fr, /en/ for en ) instead of the original build script.
+import { pixelIconPath, biomeArrowPath } from '../lib/pixelIcons';
+
+interface Props {
+  t: any;
+  links: any;
+  path: string; // "/" or "/en/"
+  otherHref: string; // link to the other language
+}
+
+const { t, links: L, path, otherHref } = Astro.props as Props;
+const SITE_URL = 'https://doomedraiders.com';
+const canonical = SITE_URL + path;
+const FONTS =
+  'https://fonts.googleapis.com/css2?family=Alegreya+Sans:ital,wght@0,400;0,500;0,700;1,400&family=Jacquard+12&family=Pixelify+Sans:wght@400;500;600&family=Silkscreen&display=swap';
+---
+<!doctype html>
+<html lang={t.htmlLang}>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>{t.title}</title>
+  <meta name="description" content={t.description} />
+  <link rel="canonical" href={canonical} />
+  <link rel="alternate" hreflang="fr" href={`${SITE_URL}/`} />
+  <link rel="alternate" hreflang="en" href={`${SITE_URL}/en/`} />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content={t.title} />
+  <meta property="og:description" content={t.description} />
+  <meta property="og:image" content={`${SITE_URL}/assets/og-image.jpg`} />
+  <meta property="og:url" content={canonical} />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="theme-color" content="#0b140f" />
+  <link rel="icon" type="image/png" href="/assets/favicon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href={FONTS} />
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+<a class="skip" href="#expedition">↓</a>
+<header class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="#top" aria-label="Doomed Raiders"><img src="/assets/logo-doomed-raiders.png" alt="Doomed Raiders" width="277" height="127" /></a>
+    <nav class="nav" aria-label="Sections">
+      <a href="#expedition">{t.nav.expedition}</a>
+      <a href="#museum">{t.nav.museum}</a>
+      <a href="#raiders">{t.nav.raiders}</a>
+      <a href="#biomes">{t.nav.biomes}</a>
+      <a href="#studio">{t.nav.studio}</a>
+      <a href="#videos">{t.nav.videos}</a>
+      <a href="#fungus-forest">{t.nav.fungus}</a>
+    </nav>
+    <div class="topbar-actions">
+      <a class="lang" href={otherHref} hreflang={t.lang === 'fr' ? 'en' : 'fr'} title={t.switchTitle}>{t.switchLabel}</a>
+      {L.steamLive
+        ? <a class="btn btn-steam btn-small" href={L.steam} target="_blank" rel="noopener">{t.nav.wishlist}</a>
+        : <a class="btn btn-steam btn-small" href="#wishlist">{t.nav.steamSoon}</a>}
+    </div>
+  </div>
+</header>
+<main>
+
+  <section class="hero" id="top">
+    <img class="hero-art px-img" data-parallax="1" src="/assets/hero-keyart.webp" alt={t.hero.alt} width="1992" height="1096" fetchpriority="high" />
+    <div class="hero-shade" aria-hidden="true"></div>
+    <div class="wrap hero-content">
+      <img class="hero-logo" src="/assets/logo-doomed-raiders.png" alt="Doomed Raiders" width="277" height="127" />
+      <p class="kicker">{t.hero.kicker}</p>
+      <h1>{t.hero.title}</h1>
+      <p class="lede">{t.hero.lede}</p>
+      <div class="actions">
+        {L.steamLive
+          ? <a class="btn btn-steam btn-large" href={L.steam} target="_blank" rel="noopener"><span class="btn-icon" aria-hidden="true">+</span>{t.hero.cta}</a>
+          : <span class="btn btn-soon btn-large"><span class="btn-icon" aria-hidden="true">…</span>{t.hero.steamSoon}</span>}
+        {L.steamLive
+          ? <a class="btn btn-ghost" href="#expedition">{t.hero.secondary}</a>
+          : <a class="btn btn-ghost" href="#social">{t.hero.follow}</a>}
+      </div>
+      <p class="soon">{t.hero.soon}</p>
+    </div>
+  </section>
+
+  <section class="section" id="expedition">
+    <div class="wrap">
+      <p class="eyebrow">{t.expedition.eyebrow}</p>
+      <h2>{t.expedition.title}</h2>
+      <p class="intro">{t.expedition.intro}</p>
+      <ol class="steps">
+        {t.expedition.steps.map((s: any) => (
+          <li class="step">
+            <figure class="step-art"><img src={`/assets/${s.img}`} alt={s.alt} loading="lazy" /></figure>
+            <div class="step-body">
+              <span class="step-n" aria-hidden="true">{s.n}</span>
+              <h3>{s.title}</h3>
+              <p>{s.text}</p>
+            </div>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <section class="section-game">
+    <div class="game-bg">
+      <img class="px-img" data-parallax="0.5" src="/assets/not-a-whale-wide.webp" alt={t.game.quoteAlt} width="2400" height="1297" loading="lazy" />
+    </div>
+    <div class="wrap game-grid">
+      <div class="game-copy">
+        <p class="eyebrow">{t.game.eyebrow}</p>
+        <h2>{t.game.title}</h2>
+        {t.game.text.map((p: string) => <p>{p}</p>)}
+        <dl class="pillars">
+          {t.game.pillars.map((p: any) => <div><dt>{p.k}</dt><dd>{p.v}</dd></div>)}
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-museum" id="museum">
+    <div class="wrap">
+      <p class="eyebrow">{t.museum.eyebrow}</p>
+      <h2>{t.museum.title}</h2>
+      <p class="intro">{t.museum.intro}</p>
+      <div class="plates">
+        {t.museum.specimens.map((s: any) => (
+          <figure class="plate">
+            <div class="plate-art"><img src={`/assets/${s.img}`} alt={s.alt} loading="lazy" /></div>
+            <figcaption class="cartel">
+              <span class="cartel-no">{t.museum.label} {s.no}</span>
+              <strong class="cartel-name">{s.name}</strong>
+              <span class="cartel-era">{s.era}</span>
+              <span class="cartel-note">{s.note}</span>
+            </figcaption>
+          </figure>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="raiders">
+    <div class="wrap">
+      <p class="eyebrow">{t.raiders.eyebrow}</p>
+      <h2>{t.raiders.title}</h2>
+      <p class="intro">{t.raiders.intro}</p>
+      <div class="raiders">
+        {t.raiders.list.map((c: any) => (
+          <article class={`raider raider-${c.id}`}>
+            <div class="raider-stage">
+              <img class="raider-big" src={`/assets/raider-${c.id}-big.png`} alt={c.alt} loading="lazy" />
+              <figure class="raider-sprite">
+                <img src={`/assets/raider-${c.id}-small.png`} alt="" loading="lazy" />
+                <figcaption>{t.raiders.inGame}</figcaption>
+              </figure>
+            </div>
+            <div class="raider-body">
+              <h3>{c.name}</h3>
+              <p class="tag">{c.tag}</p>
+              <p>{c.text}</p>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-biomes" id="biomes">
+    <div class="wrap">
+      <p class="eyebrow">{t.biomes.eyebrow}</p>
+      <h2>{t.biomes.title}</h2>
+      <p class="intro">{t.biomes.intro}</p>
+      <div class="carousel" data-carousel data-interval="6000" role="region" aria-roledescription="carousel" aria-label={t.biomes.title}>
+        <div class="car-stage">
+          <ul class="car-slides">
+            {t.biomes.list.map((c: any, i: number) => {
+              const n = t.biomes.list.length;
+              const pad = (v: number) => String(v).padStart(2, '0');
+              return (
+                <li class={`car-slide${i === 0 ? ' is-active' : ''}`} id={`biome-${i + 1}`} aria-roledescription="slide" aria-label={`${pad(i + 1)} / ${pad(n)} · ${c.name}`} aria-hidden={i === 0 ? undefined : 'true'}>
+                  <img src={`/assets/${c.img}`} alt="" loading={i === 0 ? undefined : 'lazy'} />
+                  <div class="car-caption"><span class="biome-no">{pad(i + 1)} / {pad(n)}</span><h3>{c.name}</h3><p>{c.text}</p></div>
+                </li>
+              );
+            })}
+          </ul>
+          <button type="button" class="car-arrow car-prev" data-dir="-1" aria-label={t.biomes.prev}>
+            <svg viewBox="0 0 7 11" width="21" height="33" aria-hidden="true" shape-rendering="crispEdges"><path d={biomeArrowPath('prev')} fill="currentColor"></path></svg>
+          </button>
+          <button type="button" class="car-arrow car-next" data-dir="1" aria-label={t.biomes.next}>
+            <svg viewBox="0 0 7 11" width="21" height="33" aria-hidden="true" shape-rendering="crispEdges"><path d={biomeArrowPath('next')} fill="currentColor"></path></svg>
+          </button>
+          <div class="car-progress" aria-hidden="true"><i></i></div>
+        </div>
+        <div class="car-tabs" aria-label={t.biomes.title}>
+          {t.biomes.list.map((c: any, i: number) => (
+            <button type="button" class={`car-tab${i === 0 ? ' is-active' : ''}`} data-slide={i} aria-controls={`biome-${i + 1}`} aria-current={i === 0 ? 'true' : undefined}><span>{String(i + 1).padStart(2, '0')}</span> {c.name}</button>
+          ))}
+        </div>
+      </div>
+      <p class="biome-secret-note"><strong>{t.biomes.more.name}</strong> {t.biomes.more.text}</p>
+    </div>
+  </section>
+
+  <section class="travel-band" aria-labelledby="travel-title">
+    <img class="px-img" data-parallax="1" src="/assets/travel-worldmap.webp" alt={t.travel.mapAlt} width="3140" height="1472" loading="lazy" />
+    <div class="wrap travel-grid">
+      <figure class="travel-balloon"><img src="/assets/travel-balloon.webp" alt={t.travel.balloonAlt} loading="lazy" /></figure>
+      <div class="travel-copy">
+        <p class="eyebrow">{t.travel.eyebrow}</p>
+        <h2 id="travel-title">{t.travel.title}</h2>
+        <p>{t.travel.text}</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="wishlist" id="wishlist">
+    <img class="wishlist-art" src="/assets/raider-strong-big.png" alt="" loading="lazy" />
+    <div class="wrap wishlist-inner">
+      <h2>{L.steamLive ? t.wishlist.title : t.wishlist.soonTitle}</h2>
+      <p class="wishlist-lede">{L.steamLive ? t.wishlist.text : t.wishlist.soonText}</p>
+      <ul class="reasons">{t.wishlist.reasons.map((r: string) => <li>{r}</li>)}</ul>
+      <div class="actions">
+        {L.steamLive
+          ? <a class="btn btn-steam btn-large" href={L.steam} target="_blank" rel="noopener"><span class="btn-icon" aria-hidden="true">+</span>{t.wishlist.cta}</a>
+          : <span class="btn btn-soon btn-large"><span class="btn-icon" aria-hidden="true">…</span>{t.wishlist.steamSoon}</span>}
+        {!L.steamLive && <a class="btn btn-ghost" href="#social">{t.wishlist.follow}</a>}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-studio" id="studio">
+    <div class="wrap studio-grid">
+      <div class="studio-copy">
+        <p class="eyebrow">{t.studio.eyebrow}</p>
+        <h2>{t.studio.title}</h2>
+        {t.studio.text.map((p: string) => <p>{p}</p>)}
+        <p class="from"><a href="#fungus-forest">{t.studio.from}&nbsp;↓</a></p>
+      </div>
+      <img class="studio-bear" src="/assets/logo-anorak-bear-crop.gif" alt={t.studio.bearAlt} width="612" height="392" loading="lazy" />
+    </div>
+    <div class="wrap">
+      <ul class="team">
+        {t.studio.team.map((m: any) => (
+          <li class="member"><img src={`/assets/${m.img}`} alt={m.alt} loading="lazy" /><div><strong>{m.name}</strong><span>{m.role}</span></div></li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section class="section section-videos" id="videos" aria-labelledby="videos-title">
+    <div class="wrap">
+      <div class="videos-head">
+        <div>
+          <p class="eyebrow">{t.videos.eyebrow}</p>
+          <h2 id="videos-title">{t.videos.title}</h2>
+          <p class="intro">{t.videos.text}</p>
+        </div>
+        {L.shorts?.length > 0 && (
+          <div class="shorts-arrows">
+            <button type="button" class="shorts-arrow" data-shorts="-1" aria-label={t.videos.prev}>←</button>
+            <button type="button" class="shorts-arrow" data-shorts="1" aria-label={t.videos.next}>→</button>
+          </div>
+        )}
+      </div>
+    </div>
+    {L.shorts?.length > 0 && (
+      <div class="shorts-scroller" data-shorts-track tabindex="0" aria-label={t.videos.title}>
+        <ul class="shorts">
+          {L.shorts.map((id: string, i: number) => (
+            <li>
+              <a class="short" href={`https://www.youtube.com/shorts/${id}`} target="_blank" rel="noopener" data-youtube={id} data-title={`${t.videos.title} ${i + 1}`} aria-label={`${t.videos.play} ${i + 1}`}>
+                <img src={`https://i.ytimg.com/vi/${id}/hqdefault.jpg`} alt="" width="480" height="360" loading="lazy" />
+                <span class="short-play" aria-hidden="true"><span class="play-icon"></span></span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    )}
+    <div class="wrap">
+      {(() => {
+        const yt = L.social?.find((s: any) => s.id === 'youtube');
+        return yt ? <p class="videos-more"><a class="btn btn-ghost" href={yt.url} target="_blank" rel="noopener">{t.videos.more}</a></p> : null;
+      })()}
+      <div class="follow-cta">
+        <div class="follow-copy">
+          <h3>{t.videos.followTitle}</h3>
+          <p>{t.videos.followText}</p>
+        </div>
+        <div class="follow-icons">
+          {L.social?.map((l: any) => (
+            <a class="follow-icon" href={l.url} target="_blank" rel="noopener" aria-label={l.name} title={l.name}>
+              <svg class="px-icon" viewBox="0 0 12 12" width="48" height="48" aria-hidden="true" shape-rendering="crispEdges"><path d={pixelIconPath(l.id)} fill="currentColor"></path></svg>
+            </a>
+          ))}
+        </div>
+        <a class="follow-all" href="#social">{t.videos.followAll}&nbsp;↓</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="social" id="social" aria-labelledby="social-title">
+    <div class="wrap">
+      <h2 id="social-title">{t.social.title}</h2>
+      <p class="intro">{t.social.text}</p>
+      <ul class="social-list">
+        {L.social?.map((l: any) => (
+          <li>
+            <a class="social-link" href={l.url} target="_blank" rel="noopener">
+              <svg class="px-icon" viewBox="0 0 12 12" width="48" height="48" aria-hidden="true" shape-rendering="crispEdges"><path d={pixelIconPath(l.id)} fill="currentColor"></path></svg>
+              <span class="social-name">{l.name}</span>
+              <span class="social-handle" set:html={l.handle.replace(/\./g, '.<wbr>')} />
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <div class="fungus-hidden" id="fungus-forest">
+    <section class="fungus-band" aria-label="Fungus Forest">
+      <img class="px-img" data-parallax="1" src="/assets/ff-keyart-wide.webp" alt={t.fungus.bandAlt} width="1894" height="1064" loading="lazy" />
+      <div class="wrap fungus-band-inner">
+        <p class="eyebrow">{t.fungus.eyebrow}</p>
+        <a class="btn btn-fungus" href={L.fungusItch} target="_blank" rel="noopener">{t.fungus.cta}</a>
+      </div>
+    </section>
+    <section class="section section-fungus">
+      <div class="wrap">
+        <div class="fungus-grid">
+          <div class="fungus-media">
+            <a class="video" href={L.fungusVideo || `https://www.youtube.com/watch?v=${L.fungusVideoId}`} target="_blank" rel="noopener" data-youtube={L.fungusVideoId} data-title="Fungus Forest">
+              <img src="/assets/ff-gameplay.webp" alt={t.fungus.videoAlt} loading="lazy" />
+              <span class="play"><span class="play-icon" aria-hidden="true"></span>{t.fungus.video}</span>
+            </a>
+          </div>
+          <div class="fungus-copy">
+            <h2 class="fungus-title">{t.fungus.title}</h2>
+            {t.fungus.text.map((p: string) => <p>{p}</p>)}
+            <dl class="facts">{t.fungus.facts.map((f: any) => <div><dt>{f.k}</dt><dd>{f.v}</dd></div>)}</dl>
+            <div class="actions">
+              <a class="btn btn-fungus btn-large" href={L.fungusItch} target="_blank" rel="noopener">{t.fungus.cta}</a>
+              <a class="btn btn-ghost" href={L.fungusItch} target="_blank" rel="noopener">{t.fungus.demo}</a>
+            </div>
+            <img class="fungus-handheld" src="/assets/ff-handheld.webp" alt={t.fungus.handheldAlt} loading="lazy" />
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+</main>
+<footer class="footer">
+  <div class="wrap footer-grid">
+    <div>
+      <img class="footer-logo" src="/assets/logo-anorak-3lines.png" alt="Anorak Studio Games" width="420" height="230" loading="lazy" />
+      <p>{t.footer.tagline}</p>
+    </div>
+    <div>
+      <p class="footer-h">{t.footer.links}</p>
+      <ul>
+        <li>{L.steamLive ? <a href={L.steam} target="_blank" rel="noopener">{t.footer.steam}</a> : <span class="soon-link">{t.footer.steamSoon}</span>}</li>
+        <li><a href={L.fungusItch} target="_blank" rel="noopener">{t.footer.itch}</a></li>
+        <li><a href={L.anorak} target="_blank" rel="noopener">{t.footer.anorak}</a></li>
+      </ul>
+    </div>
+  </div>
+  <p class="wrap legal">© <span data-year>2026</span> {t.footer.rights}</p>
+</footer>
+<script src="/site.js" defer></script>
+</body>
+</html>
